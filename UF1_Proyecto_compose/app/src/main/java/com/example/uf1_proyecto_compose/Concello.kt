@@ -2,7 +2,7 @@ package com.example.uf1_proyecto_compose
 
 import com.google.gson.GsonBuilder
 
-fun main(){
+fun listaConcello(){
     val gson = GsonBuilder()
 }
 

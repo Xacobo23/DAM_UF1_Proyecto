@@ -31,10 +31,12 @@ class MainActivity : ComponentActivity() {
 
 @Composable
 fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
+    Surface {
+        Text(
+            text = "asd",
+            modifier = Modifier.fillMaxSize()
+        )
+    }
 }
 
 @Preview(showBackground = true)
