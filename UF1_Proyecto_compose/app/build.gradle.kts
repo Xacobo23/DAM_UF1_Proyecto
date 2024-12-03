@@ -5,11 +5,11 @@ plugins {
 
 android {
     namespace = "com.example.uf1_proyecto_compose"
-    compileSdk = 33
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.uf1_proyecto_compose"
-        minSdk = 24
+        minSdk = 26
         targetSdk = 33
         versionCode = 1
         versionName = "1.0"
@@ -51,6 +51,13 @@ android {
 
 dependencies {
 
+    implementation ("com.google.accompanist:accompanist-pager:0.28.0")
+
+    implementation ("androidx.compose.material:material-icons-extended")
+    implementation ("androidx.compose.material:material:1.7.5")
+    implementation ("androidx.navigation:navigation-compose:2.8.4")
+    implementation ("io.coil-kt:coil-compose:2.0.0")
+    implementation ("io.coil-kt:coil-svg:2.0.0")
     implementation ("com.google.accompanist:accompanist-swiperefresh:0.28.0")
     implementation ("androidx.lifecycle:lifecycle-runtime-ktx:2.2.0")
     implementation("androidx.compose.material3:material3:1.4.0-alpha02")
