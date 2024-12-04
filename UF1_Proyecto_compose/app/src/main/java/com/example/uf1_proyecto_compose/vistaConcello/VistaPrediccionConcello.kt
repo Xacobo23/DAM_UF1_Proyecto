@@ -2,14 +2,19 @@ package com.example.uf1_proyecto_compose.vistaConcello
 
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
@@ -39,11 +44,11 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
+import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
-import androidx.navigation.NavHostController
 import com.example.uf1_proyecto_compose.R
 import com.example.uf1_proyecto_compose.ViewModelTiempo
 import kotlinx.coroutines.launch
@@ -69,8 +74,6 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
     var isRefreshing by remember { mutableStateOf(false) }
     val coroutineScope = rememberCoroutineScope()
 
-
-
     PullToRefreshBox(
         state = rememberPullToRefreshState(),
         isRefreshing = isRefreshing,
@@ -90,11 +93,17 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
 
 
         Box {
-
+            val insets = WindowInsets.systemBars
+            val density = LocalDensity.current
             Column(
-                modifier = Modifier
+                modifier = Modifier.fillMaxSize()
                     .verticalScroll(state = rememberScrollState())
                     .background(backgroundBrush(viewModel.hSunriseSunset.value))
+                    .padding(
+                        top = with(density) { insets.getTop(density).toDp() },
+                        bottom = with(density) { insets.getBottom(density).toDp() }
+                    )
+//                    .background(Color.Cyan).fillMaxSize()
 
 
             ) {
@@ -103,7 +112,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                     text = concelloObservacion.nomeConcello,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(20.dp),
+                        .padding(bottom = 20.dp),
                     fontSize = 30.sp,
                     color = Color.White,
                     textAlign = TextAlign.Center
@@ -153,7 +162,12 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                             )
                         }
 
-                        PutImage(iconWindState(concelloObservacion.icoVento), Modifier.size(100.dp).padding(start = 8.dp))
+                        PutImage(
+                            iconWindState(concelloObservacion.icoVento),
+                            Modifier
+                                .size(100.dp)
+                                .padding(start = 8.dp)
+                        )
 
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -279,7 +293,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                 Column {
                                     Row(
                                         modifier = Modifier
-                                            .padding( bottom = 16.dp)
+                                            .padding(bottom = 16.dp)
                                             .background(Color.Gray.copy(alpha = 0.3f))
                                             .fillMaxWidth()
                                             .padding(end = 16.dp, start = 16.dp),
@@ -325,7 +339,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                                 textAlign = TextAlign.Center,
                                                 color = Color.White,
-                                                )
+                                            )
                                             PutImage(
                                                 iconSkyState(listaPredDiaConcello[i].ceo.manha),
                                                 Modifier
@@ -613,7 +627,6 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun BottomNavigationBar(
-    navController: NavHostController?,
     pagerState: PagerState,
     coroutineScope: CoroutineScope
 ) {

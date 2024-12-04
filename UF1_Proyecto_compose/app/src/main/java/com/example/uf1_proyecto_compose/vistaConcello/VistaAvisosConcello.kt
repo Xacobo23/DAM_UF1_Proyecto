@@ -172,7 +172,6 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                             )
                                         }
                                     }
-
                                 }
                             }
                         }

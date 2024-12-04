@@ -1,6 +1,7 @@
 package com.example.uf1_proyecto_compose
 
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -8,7 +9,7 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.navigation.compose.rememberNavController
+import androidx.compose.ui.unit.dp
 import com.example.uf1_proyecto_compose.vistaConcello.BottomNavigationBar
 import com.example.uf1_proyecto_compose.vistaConcello.VistaAvisosConcello
 import com.example.uf1_proyecto_compose.vistaConcello.VistaPrediccionConcello
@@ -17,12 +18,13 @@ import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.delay
 
+@SuppressLint("UnusedMaterial3ScaffoldPaddingParameter")
 @OptIn(ExperimentalPagerApi::class)
 @Composable
 fun VistaConcello(
-    viewModelTiempo: ViewModelTiempo
+    viewModelTiempo: ViewModelTiempo,
 ) {
-    val navController = rememberNavController()
+
     val pagerState = remember { PagerState() }
     val coroutineScope = rememberCoroutineScope()
     var visible by remember { mutableStateOf(true) }
@@ -36,17 +38,17 @@ fun VistaConcello(
 
 
 
-    Box {
+    Box (modifier = Modifier) {
         Scaffold(
             bottomBar = {
                 BottomNavigationBar(
-                    navController = navController,
                     pagerState = pagerState,
                     coroutineScope = coroutineScope
                 )
-            }
-        ) { innerPadding ->
-            Box(modifier = Modifier.padding(innerPadding)) {
+            },
+            modifier = Modifier.padding(bottom = 32.dp)
+        ) {
+            Box(modifier = Modifier) {
                 HorizontalPager(
                     state = pagerState,
                     count = 2, // Número de pantallas
