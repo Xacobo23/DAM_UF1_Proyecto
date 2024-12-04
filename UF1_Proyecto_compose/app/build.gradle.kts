@@ -50,7 +50,7 @@ android {
 }
 
 dependencies {
-
+    implementation ("com.google.accompanist:accompanist-systemuicontroller:0.31.0-alpha")
     implementation ("com.google.accompanist:accompanist-pager:0.28.0")
 
     implementation ("androidx.compose.material:material-icons-extended")

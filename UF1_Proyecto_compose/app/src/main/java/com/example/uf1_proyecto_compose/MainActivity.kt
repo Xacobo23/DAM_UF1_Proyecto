@@ -40,7 +40,6 @@ import androidx.navigation.navArgument
 import com.example.uf1_proyecto_compose.vistaConcello.listaConcello
 import com.example.uf1_proyecto_compose.ui.theme.UF1_Proyecto_composeTheme
 import com.example.uf1_proyecto_compose.vistaConcello.Concello
-import com.google.accompanist.pager.ExperimentalPagerApi
 import kotlinx.coroutines.delay
 import java.nio.charset.Charset
 
@@ -52,7 +51,7 @@ class MainActivity : ComponentActivity() {
             UF1_Proyecto_composeTheme {
                 Surface(
                     modifier = Modifier.fillMaxSize(),
-                    color = MaterialTheme.colorScheme.background
+//                    color = MaterialTheme.colorScheme.background
                 ) {
                     Greeting("Android")
                 }
@@ -67,7 +66,6 @@ fun Greeting(
     modifier: Modifier = Modifier
 ) {
         val navController = rememberNavController()
-
 
         NavHost(navController = navController, startDestination = "pantalla_principal") {
             composable("pantalla_principal") {
@@ -93,8 +91,6 @@ fun BusquedaConcello(navController: NavHostController) {
             Charset.defaultCharset()
         )
 
-    val context = LocalContext.current
-
     val searchQuery = remember { mutableStateOf("") }
 
     val isLoading = remember { mutableStateOf(true) }
@@ -106,11 +102,7 @@ fun BusquedaConcello(navController: NavHostController) {
         val loadedCities = mutableListOf<Concello>()
         delay(50)
 
-        listaConcello(
-            context.assets.open("concellos.json")
-                .readBytes()
-                .toString(Charset.defaultCharset())
-        )
+        listaConcello(listaConcellos)
             .forEach { city ->
                 delay(1)
                 loadedCities.add(city)
@@ -132,8 +124,8 @@ fun BusquedaConcello(navController: NavHostController) {
         TextField(
             value = searchQuery.value,
             onValueChange = { searchQuery.value = it },
-            label = { Text("Buscar Ciudad") },
-            placeholder = { Text("Escribe una ciudad") },
+            label = { Text("Busca un concello") },
+            placeholder = { Text("Escribe un concello") },
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .fillMaxWidth(),
@@ -156,7 +148,7 @@ fun BusquedaConcello(navController: NavHostController) {
 
 
         } else {
-            // Lista filtrada de ciudades
+            // Lista filtrada de concellos
             Column(
                 modifier = Modifier
                     .verticalScroll(state = rememberScrollState())
@@ -185,6 +177,8 @@ fun BusquedaConcello(navController: NavHostController) {
         }
     }
 }
+
+
 
 @Preview(showBackground = true)
 @Composable

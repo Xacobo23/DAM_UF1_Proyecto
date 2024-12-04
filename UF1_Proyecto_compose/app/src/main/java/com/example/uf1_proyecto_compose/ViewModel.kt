@@ -1,7 +1,11 @@
 package com.example.uf1_proyecto_compose
 
+import android.app.Activity
 import android.content.Context
+import android.content.Intent
+import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uf1_proyecto_compose.vistaConcello.AvisosDeserializer
@@ -27,6 +31,8 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
+
+
 
     private val _concelloObservacion =
         mutableStateOf<ObservacionConcello>(ObservacionConcello(-9999, -9999, 0, "", 0.0, 0.0))
@@ -259,6 +265,5 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
             }
         }
     }
-
 
 }

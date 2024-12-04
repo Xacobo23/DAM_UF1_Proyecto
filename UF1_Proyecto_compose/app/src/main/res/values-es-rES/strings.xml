@@ -9,33 +9,35 @@
     <string name="predLargoConcello">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredMedioPrazo.action?idConc=</string>
     <string name="predLargoConcelloDia">&amp;dia=-1</string>
 
-    <string name="request_locale">&amp;request_locale=gl</string>
+    <string name="request_locale">&amp;request_locale=es</string>
 
     <string name="sunRiseSet">https://api.sunrisesunset.io/json?lat=42.8644000&amp;lng=-7.6372000</string>
 
-    <string name="monday">Luns</string>
+
+
+    <string name="monday">Lunes</string>
     <string name="tuesday">Martes</string>
-    <string name="wednesday">Mércores</string>
-    <string name="thursday">Xoves</string>
-    <string name="friday">Venres</string>
+    <string name="wednesday">Miércoles</string>
+    <string name="thursday">Jueves</string>
+    <string name="friday">Viernes</string>
     <string name="saturday">Sábado</string>
     <string name="sunday">Domingo</string>
 
-    <string name="january">Xaneiro</string>
-    <string name="february">Febreiro</string>
+    <string name="january">Enero</string>
+    <string name="february">Febrero</string>
     <string name="march">Marzo</string>
     <string name="april">Abril</string>
-    <string name="may">Maio</string>
-    <string name="june">Xuño</string>
-    <string name="july">Xullo</string>
+    <string name="may">Mai¡yo</string>
+    <string name="june">Junio</string>
+    <string name="july">Julio</string>
     <string name="august">Agosto</string>
-    <string name="september">Setembro</string>
-    <string name="october">Outubro</string>
-    <string name="november">Novembro</string>
-    <string name="december">Decembro</string>
+    <string name="september">Septiembre</string>
+    <string name="october">Octubrr</string>
+    <string name="november">Noviembre</string>
+    <string name="december">Diciembre</string>
 
-    <string name="night">Noite</string>
-    <string name="morning">Mañá</string>
+    <string name="night">Noche</string>
+    <string name="morning">Mañana</string>
     <string name="afternoon">Tarde</string>
 
     <string name="error">Error</string>
@@ -50,7 +52,7 @@
     <string name="deSpace">&#160;de&#160;</string>
 
     <string name="nextDays">Próximos días</string>
-    <string name="longTerm">Predicción a longo prazo</string>
+    <string name="longTerm">Predicción a largo plazo</string>
     <string name="dDot00">:00</string>
 
 </resources>
