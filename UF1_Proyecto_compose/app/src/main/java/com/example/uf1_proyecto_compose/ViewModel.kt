@@ -1,26 +1,22 @@
 package com.example.uf1_proyecto_compose
 
-import android.app.Activity
 import android.content.Context
-import android.content.Intent
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
-import androidx.compose.ui.platform.LocalContext
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
-import com.example.uf1_proyecto_compose.vistaConcello.AvisosDeserializer
-import com.example.uf1_proyecto_compose.vistaConcello.Horas
-import com.example.uf1_proyecto_compose.vistaConcello.ListaPrediccionAvisos
-import com.example.uf1_proyecto_compose.vistaConcello.ObservacionActualConcello
-import com.example.uf1_proyecto_compose.vistaConcello.ObservacionConcello
-import com.example.uf1_proyecto_compose.vistaConcello.PredConcelloCurtoPrazo
-import com.example.uf1_proyecto_compose.vistaConcello.PredConcelloLargoPrazo
-import com.example.uf1_proyecto_compose.vistaConcello.PredHoraria
-import com.example.uf1_proyecto_compose.vistaConcello.PredLargoPlazo
-import com.example.uf1_proyecto_compose.vistaConcello.PrediccionAvisos
-import com.example.uf1_proyecto_compose.vistaConcello.PrediccionCurtoPrazo
-import com.example.uf1_proyecto_compose.vistaConcello.PrediccionHoras
-import com.example.uf1_proyecto_compose.vistaConcello.SunDeserializer
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.AvisosDeserializer
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.Horas
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.ListaPrediccionAvisos
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.ObservacionActualConcello
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.ObservacionConcello
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PredConcelloCurtoPrazo
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PredConcelloLargoPrazo
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PredHoraria
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PredLargoPlazo
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PrediccionAvisos
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PrediccionCurtoPrazo
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.PrediccionHoras
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.SunDeserializer
 import com.google.gson.GsonBuilder
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.async
@@ -31,7 +27,6 @@ import java.net.HttpURLConnection
 import java.net.URL
 
 class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
-
 
 
     private val _concelloObservacion =
@@ -161,59 +156,60 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
 
             val deferredConcelloAvisos = async(Dispatchers.IO) {
                 try {
-                    val avisosConcello = fetchUrlContent("https://servizos.meteogalicia.gal/mgrss/predicion/adversos/jsonAvisosConcellos.action?idConcello=36013&dia=-1")
-//                        """
-//{
-//  "listaDiaConcellos": [
-//    {
-//      "dia": 0,
-//      "listaAvisosConcellos": [
-//        {
-//          "idconcello": 15010,
-//          "idNivel": 1,
-//          "nomeConcello": "A Coruña",
-//          "dataAviso": "2024-12-02T08:00:00",
-//          "dataIni": "2024-12-02T10:00:00",
-//          "dataFin": "2024-12-02T20:00:00",
-//          "idTipoAlerta": 3,
-//          "tipoalerta_gl": "Alerta laranxa por chuvias intensas",
-//          "tipoalerta_es": "Alerta naranja por lluvias intensas"
-//        },
-//        {
-//          "idconcello": 15030,
-//          "idNivel": 2,
-//          "nomeConcello": "Lugo",
-//          "dataAviso": "2024-12-02T08:00:00",
-//          "dataIni": "2024-12-02T12:00:00",
-//          "dataFin": "2024-12-02T18:00:00",
-//          "idTipoAlerta": 2,
-//          "tipoalerta_gl": "Alerta amarela por ventos fortes",
-//          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
-//        },
-//        {
-//          "idconcello": 15030,
-//          "idNivel": 3,
-//          "nomeConcello": "Lugo",
-//          "dataAviso": "2024-12-02T08:00:00",
-//          "dataIni": "2024-12-02T12:00:00",
-//          "dataFin": "2024-12-02T18:00:00",
-//          "idTipoAlerta": 2,
-//          "tipoalerta_gl": "Alerta amarela por ventos fortes",
-//          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
-//        }
-//      ]
-//    },
-//    {
-//      "dia": 1,
-//      "listaAvisosConcellos": []
-//    },
-//    {
-//      "dia": 2,
-//      "listaAvisosConcellos": []
-//    }
-//  ]
-//}
-//                """
+                    val avisosConcello =
+                        //fetchUrlContent("https://servizos.meteogalicia.gal/mgrss/predicion/adversos/jsonAvisosConcellos.action?idConcello=36013&dia=-1")
+                        """
+{
+  "listaDiaConcellos": [
+    {
+      "dia": 0,
+      "listaAvisosConcellos": [
+        {
+          "idconcello": 15010,
+          "idNivel": 1,
+          "nomeConcello": "A Coruña",
+          "dataAviso": "2024-12-02T08:00:00",
+          "dataIni": "2024-12-02T10:00:00",
+          "dataFin": "2024-12-02T20:00:00",
+          "idTipoAlerta": 3,
+          "tipoalerta_gl": "Alerta laranxa por chuvias intensas",
+          "tipoalerta_es": "Alerta naranja por lluvias intensas"
+        },
+        {
+          "idconcello": 15030,
+          "idNivel": 2,
+          "nomeConcello": "Lugo",
+          "dataAviso": "2024-12-02T08:00:00",
+          "dataIni": "2024-12-02T12:00:00",
+          "dataFin": "2024-12-02T18:00:00",
+          "idTipoAlerta": 2,
+          "tipoalerta_gl": "Alerta amarela por ventos fortes",
+          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
+        },
+        {
+          "idconcello": 15030,
+          "idNivel": 3,
+          "nomeConcello": "Lugo",
+          "dataAviso": "2024-12-02T08:00:00",
+          "dataIni": "2024-12-02T12:00:00",
+          "dataFin": "2024-12-02T18:00:00",
+          "idTipoAlerta": 2,
+          "tipoalerta_gl": "Alerta roxa por ventos fortes",
+          "tipoalerta_es": "Alerta roja por vientos fuertes"
+        }
+      ]
+    },
+    {
+      "dia": 1,
+      "listaAvisosConcellos": []
+    },
+    {
+      "dia": 2,
+      "listaAvisosConcellos": []
+    }
+  ]
+}
+                """
 
                     val gsonAvisosConcello = GsonBuilder()
                         .registerTypeAdapter(
@@ -221,12 +217,6 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
                             AvisosDeserializer()
                         )
                         .create()
-                    println(
-                        gsonAvisosConcello.fromJson(
-                            avisosConcello,
-                            ListaPrediccionAvisos::class.java
-                        )
-                    )
                     gsonAvisosConcello.fromJson(avisosConcello, ListaPrediccionAvisos::class.java)
 
                 } catch (e: Exception) {

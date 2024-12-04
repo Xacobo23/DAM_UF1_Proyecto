@@ -1,11 +1,11 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
 
-class AvisosDeserializer: JsonDeserializer<ListaPrediccionAvisos> {
+class AvisosDeserializer : JsonDeserializer<ListaPrediccionAvisos> {
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type?,
@@ -14,13 +14,13 @@ class AvisosDeserializer: JsonDeserializer<ListaPrediccionAvisos> {
         val jsonObject = json.asJsonObject
 
         val arrayDias = jsonObject.get("listaDiaConcellos").asJsonArray
-        val listaDias : MutableList<PrediccionAvisos> = mutableListOf()
+        val listaDias: MutableList<PrediccionAvisos> = mutableListOf()
 
-        arrayDias.forEach{ item ->
-            val listaAvisosConcello : MutableList<AvisoConcellos> = mutableListOf()
+        arrayDias.forEach { item ->
+            val listaAvisosConcello: MutableList<AvisoConcellos> = mutableListOf()
             val arrayAvisosConcello = item.asJsonObject.get("listaAvisosConcellos").asJsonArray
 
-            arrayAvisosConcello.forEach{
+            arrayAvisosConcello.forEach {
                 listaAvisosConcello.add(
                     AvisoConcellos(
                         it.asJsonObject.get("idconcello").asInt,
@@ -37,8 +37,9 @@ class AvisosDeserializer: JsonDeserializer<ListaPrediccionAvisos> {
             }
             listaDias.add(
                 PrediccionAvisos(
-                item.asJsonObject.get("dia").asInt,
-                listaAvisosConcello)
+                    item.asJsonObject.get("dia").asInt,
+                    listaAvisosConcello
+                )
             )
         }
 
@@ -64,6 +65,6 @@ data class AvisoConcellos(
     val dataIni: String,
     val dataFin: String,
     val idTipoAlerta: Int,
-    val tipoalerta_gl: String,
-    val tipoalerta_es: String
+    val tipoalertaGl: String,
+    val tipoalertaEs: String
 )

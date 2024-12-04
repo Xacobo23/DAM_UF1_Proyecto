@@ -4,26 +4,28 @@
     android:viewportWidth="100"
     android:viewportHeight="100">
   <group
-      android:translateX="0"
-      android:translateY="5"
-      android:rotation="0">
+      android:translateX="-50"
+      android:translateY="-31"
+      android:rotation="0"
+      android:scaleX="2"
+      android:scaleY="2">
     <path
         android:fillColor="#FF000000"
         android:pathData="M50,30L50,60"
         android:strokeWidth="2"
-        android:strokeColor="#808080"/>
+        android:strokeColor="#ffff"/>
     <path
         android:fillColor="#FF000000"
         android:pathData="M51,56L42,56"
         android:strokeWidth="2"
-        android:strokeColor="#808080"/>
+        android:strokeColor="#ffff"/>
     <path
         android:fillColor="#FF000000"
         android:pathData="M51,60L42,60"
         android:strokeWidth="2"
-        android:strokeColor="#808080"/>
+        android:strokeColor="#ffff"/>
     <path
         android:pathData="M45,30l5,-10l5,10z"
-        android:fillColor="#808080"/>
+        android:fillColor="#ffff"/>
   </group>
 </vector>

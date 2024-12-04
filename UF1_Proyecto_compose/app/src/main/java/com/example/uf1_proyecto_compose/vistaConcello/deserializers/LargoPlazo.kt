@@ -1,4 +1,4 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -14,9 +14,9 @@ class PredLargoPlazo : JsonDeserializer<PredConcelloLargoPrazo> {
         val jsonObject = json.asJsonObject
         val predLargoPrazo = jsonObject.get("predMPrazo").asJsonObject
         val arrayPredDiaLargoPrazo = predLargoPrazo.get("listaPredDiaMPrazo").asJsonArray
-        val listaPredDiaLargoPrazo : MutableList<PredDiaLargoPrazo> = mutableListOf()
+        val listaPredDiaLargoPrazo: MutableList<PredDiaLargoPrazo> = mutableListOf()
 
-        arrayPredDiaLargoPrazo.forEach{
+        arrayPredDiaLargoPrazo.forEach {
             listaPredDiaLargoPrazo.add(
                 PredDiaLargoPrazo(
                     it.asJsonObject.get("dataPredicion").asString,
@@ -40,7 +40,7 @@ class PredLargoPlazo : JsonDeserializer<PredConcelloLargoPrazo> {
 }
 
 data class PredConcelloLargoPrazo(
-    val listaPredLargoPrazo : List<PredDiaLargoPrazo>
+    val listaPredLargoPrazo: List<PredDiaLargoPrazo>
 )
 
 data class PredDiaLargoPrazo(

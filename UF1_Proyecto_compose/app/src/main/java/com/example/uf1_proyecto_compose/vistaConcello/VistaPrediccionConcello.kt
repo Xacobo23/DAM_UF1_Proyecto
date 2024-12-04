@@ -6,7 +6,6 @@ import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
@@ -22,19 +21,16 @@ import androidx.compose.material.BottomNavigation
 import androidx.compose.material.BottomNavigationItem
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Home
-import androidx.compose.material.icons.filled.Settings
 import androidx.compose.material.icons.sharp.Warning
 import androidx.compose.material3.Card
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Icon
-import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Text
 import androidx.compose.material3.VerticalDivider
 import androidx.compose.material3.pulltorefresh.PullToRefreshBox
 import androidx.compose.material3.pulltorefresh.rememberPullToRefreshState
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
@@ -42,7 +38,6 @@ import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
@@ -65,7 +60,6 @@ import com.example.uf1_proyecto_compose.ui.theme.Gray
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.PagerState
 import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.delay
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -111,6 +105,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                         .fillMaxWidth()
                         .padding(20.dp),
                     fontSize = 30.sp,
+                    color = Color.White,
                     textAlign = TextAlign.Center
                 )
                 Text(
@@ -119,8 +114,10 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                         .plus(stringResource(id = R.string.deSpace)).plus(monthName()),
                     modifier = Modifier
                         .fillMaxWidth(),
+                    color = Color.White,
                     textAlign = TextAlign.Center,
-                    fontSize = 13.sp
+                    fontSize = 15.sp
+
                 )
 
                 Column(
@@ -143,6 +140,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                 text = viewModel.concelloObservacion.value.temperatura.toString()
                                     .plus(stringResource(id = R.string.deg)),
                                 fontSize = 40.sp,
+                                color = Color.White,
                                 modifier = Modifier
                             )
 
@@ -150,12 +148,12 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                 text = viewModel.concelloObservacion.value.sensacionTermica.toString()
                                     .plus(stringResource(id = R.string.deg)),
                                 fontSize = 15.sp,
-                                color = Color.Gray,
+                                color = Color.White,
                                 modifier = Modifier
                             )
                         }
 
-                        PutImage(iconWindState(concelloObservacion.icoVento), Modifier.size(100.dp))
+                        PutImage(iconWindState(concelloObservacion.icoVento), Modifier.size(100.dp).padding(start = 8.dp))
 
                         Column {
                             Row(verticalAlignment = Alignment.CenterVertically) {
@@ -164,6 +162,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     Text(
                                         text = listaPredDiaConcello[0].tMax.toString()
                                             .plus(stringResource(id = R.string.deg)),
+                                        color = Color.White,
                                         fontSize = 20.sp
                                     )
                             }
@@ -173,6 +172,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     Text(
                                         text = listaPredDiaConcello[0].tMin.toString()
                                             .plus(stringResource(id = R.string.deg)),
+                                        color = Color.White,
                                         fontSize = 20.sp
                                     )
                             }
@@ -197,6 +197,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                             LocalDate.now()
                                                 .plusDays(dia.dia.toLong()).dayOfWeek.value
                                         ),
+                                        color = Color.White,
                                         modifier = Modifier.padding(horizontal = 10.dp),
 
                                         )
@@ -212,8 +213,9 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                     horizontalAlignment = Alignment.CenterHorizontally,
                                                 ) {
                                                     Text(
-                                                        LocalDateTime.parse(it.dataPredicion).hour.toString()
-                                                            .plus(stringResource(id = R.string.dDot00))
+                                                        text = LocalDateTime.parse(it.dataPredicion).hour.toString()
+                                                            .plus(stringResource(id = R.string.dDot00)),
+                                                        color = Color.White,
                                                     )
                                                     PutImage(
                                                         iconSkyState(it.icoCeo),
@@ -228,7 +230,8 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                         )
                                                         Text(
                                                             text = it.tMedia.toString()
-                                                                .plus(stringResource(id = R.string.deg))
+                                                                .plus(stringResource(id = R.string.deg)),
+                                                            color = Color.White,
                                                         )
                                                     }
                                                 }
@@ -255,14 +258,16 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
 
                 Row(
                     modifier = Modifier
-                        .background(color = Gray)
+                        .background(color = Gray.copy(alpha = 0.7f))
                         .fillMaxWidth()
+
                 ) {
                     Text(
                         modifier = Modifier
                             .fillMaxWidth()
                             .padding(top = 10.dp, bottom = 10.dp),
                         text = stringResource(id = R.string.nextDays),
+                        color = Color.White,
                         textAlign = TextAlign.Center
                     )
                 }
@@ -274,8 +279,11 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                 Column {
                                     Row(
                                         modifier = Modifier
+                                            .padding( bottom = 16.dp)
+                                            .background(Color.Gray.copy(alpha = 0.3f))
                                             .fillMaxWidth()
-                                            .padding(horizontal = 16.dp),
+                                            .padding(end = 16.dp, start = 16.dp),
+
                                         horizontalArrangement = Arrangement.SpaceBetween,
                                         verticalAlignment = Alignment.CenterVertically
                                     ) {
@@ -284,20 +292,23 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                 .plus(stringResource(id = R.string.comma))
                                                 .plus(listaPredDiaConcello[i].dataPredicion.dayOfMonth)
                                                 .plus(stringResource(id = R.string.deSpace))
-                                                .plus(monthName(listaPredDiaConcello[i].dataPredicion.month.value))
+                                                .plus(monthName(listaPredDiaConcello[i].dataPredicion.month.value)),
+                                            color = Color.White
                                         )
                                         Row(
                                             verticalAlignment = Alignment.CenterVertically
                                         ) {
                                             PutImage(R.drawable.max, Modifier.size(32.dp))
                                             Text(
-                                                listaPredDiaConcello[i].tMax.toString()
-                                                    .plus(stringResource(id = R.string.deg))
+                                                text = listaPredDiaConcello[i].tMax.toString()
+                                                    .plus(stringResource(id = R.string.deg)),
+                                                color = Color.White,
                                             )
                                             PutImage(R.drawable.min, Modifier.size(32.dp))
                                             Text(
-                                                listaPredDiaConcello[i].tMin.toString()
-                                                    .plus(stringResource(id = R.string.deg))
+                                                text = listaPredDiaConcello[i].tMin.toString()
+                                                    .plus(stringResource(id = R.string.deg)),
+                                                color = Color.White,
                                             )
 
                                         }
@@ -313,7 +324,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                 text = stringResource(id = R.string.morning),
                                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                                 textAlign = TextAlign.Center,
-
+                                                color = Color.White,
                                                 )
                                             PutImage(
                                                 iconSkyState(listaPredDiaConcello[i].ceo.manha),
@@ -341,6 +352,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                         Modifier.size(30.dp)
                                                     )
                                                     Text(
+                                                        color = Color.White,
                                                         text = if (listaPredDiaConcello[i].pchoiva.manha.toString() == "-9999") {
                                                             stringResource(R.string.dash)
                                                         } else listaPredDiaConcello[i].pchoiva.manha.toString()
@@ -354,6 +366,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                 text = stringResource(id = R.string.afternoon),
                                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                                 textAlign = TextAlign.Center,
+                                                color = Color.White,
 
                                                 )
                                             PutImage(
@@ -382,6 +395,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                         Modifier.size(30.dp)
                                                     )
                                                     Text(
+                                                        color = Color.White,
                                                         text = if (listaPredDiaConcello[i].pchoiva.tarde.toString() == "-9999") {
                                                             stringResource(R.string.dash)
                                                         } else listaPredDiaConcello[i].pchoiva.tarde.toString()
@@ -395,6 +409,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                 text = stringResource(id = R.string.night),
                                                 modifier = Modifier.align(Alignment.CenterHorizontally),
                                                 textAlign = TextAlign.Center,
+                                                color = Color.White,
 
                                                 )
                                             PutImage(
@@ -423,6 +438,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                                         Modifier.size(30.dp)
                                                     )
                                                     Text(
+                                                        color = Color.White,
                                                         text = if (listaPredDiaConcello[i].pchoiva.noite.toString() == "-9999") {
                                                             stringResource(R.string.dash)
                                                         } else listaPredDiaConcello[i].pchoiva.noite.toString()
@@ -433,8 +449,8 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                         }
                                     }
                                     HorizontalDivider(
-                                        modifier = Modifier.padding(vertical = 8.dp),
-                                        color = Color.LightGray
+                                        modifier = Modifier.padding(top = 8.dp),
+                                        color = Color.White
                                     )
                                 }
                             }
@@ -447,8 +463,9 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                 Text(
                     modifier = Modifier
                         .fillMaxWidth()
-                        .background(Gray)
+                        .background(Gray.copy(alpha = 0.7f))
                         .padding(8.dp),
+                    color = Color.White,
                     text = stringResource(R.string.longTerm),
                     textAlign = TextAlign.Center
                 )
@@ -467,6 +484,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                             ) {
                                 Column {
                                     Text(
+                                        color = Color.White,
                                         text = LocalDateTime.parse(it.dataPredicion).dayOfMonth.toString()
                                             .plus(" ").plus(
                                                 monthName(LocalDateTime.parse(it.dataPredicion).month.value).take(
@@ -482,6 +500,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     ) {
                                         PutImage(iconSkyState(it.icoCeo1), Modifier.size(40.dp))
                                         Text(
+                                            color = Color.White,
                                             text = it.probIcoCeo1.toString()
                                                 .plus(stringResource(id = R.string.porcentage))
                                         )
@@ -492,6 +511,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     ) {
                                         PutImage(iconSkyState(it.icoCeo2), Modifier.size(40.dp))
                                         Text(
+                                            color = Color.White,
                                             text = it.probIcoCeo2.toString()
                                                 .plus(stringResource(id = R.string.porcentage))
                                         )
@@ -502,6 +522,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     ) {
                                         PutImage(iconSkyState(it.icoCeo3), Modifier.size(40.dp))
                                         Text(
+                                            color = Color.White,
                                             text = it.probIcoCeo3.toString()
                                                 .plus(stringResource(id = R.string.porcentage))
                                         )
@@ -514,6 +535,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     Row {
                                         PutImage(R.drawable.max, Modifier.size(20.dp))
                                         Text(
+                                            color = Color.White,
                                             text = it.tMin.toString()
                                                 .plus(stringResource(id = R.string.deg))
                                         )
@@ -521,6 +543,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                                     Row {
                                         PutImage(R.drawable.min, Modifier.size(20.dp))
                                         Text(
+                                            color = Color.White,
                                             text = it.tMin.toString()
                                                 .plus(stringResource(id = R.string.deg))
                                         )
@@ -551,7 +574,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                     listaNiveles.max()
                 } else 0
 
-            if (maxNivel!=0) {
+            if (maxNivel != 0) {
                 Card(
 
                     modifier = Modifier

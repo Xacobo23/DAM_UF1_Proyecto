@@ -50,9 +50,32 @@
 
     <string name="comma">,&#160;</string>
     <string name="deSpace">&#160;de&#160;</string>
+    <string name="whiteSpace">&#160;</string>
 
     <string name="nextDays">Próximos días</string>
     <string name="longTerm">Predicción a largo plazo</string>
     <string name="dDot00">:00</string>
+
+    <string name="findConcello">Busca un concello</string>
+    <string name="writeConcello">Escribe un concello</string>
+
+    <string name="since">Desde el&#160;</string>
+    <string name="until">&#160;hasta el&#160;</string>
+
+    <string name="from">&#160;a las&#160;</string>
+
+    <string name="noAdvice">No hay ningún aviso</string>
+
+    <string name="alert1">Temperatura máxima</string>
+    <string name="alert2">Temperatura mínima</string>
+    <string name="alert3">Precipitación en 1 hora</string>
+    <string name="alert4">Precipitación en 12 horas</string>
+    <string name="alert5">Niebla</string>
+    <string name="alert6">Nieve</string>
+    <string name="alert7">Tormenta</string>
+    <string name="alert8">Ráfaga máxima de viento</string>
+    <string name="alert9">Viento en el mar</string>
+    <string name="alert10">Ondas</string>
+    <string name="alertElse">Tipo de alerta desconocido</string>
 
 </resources>

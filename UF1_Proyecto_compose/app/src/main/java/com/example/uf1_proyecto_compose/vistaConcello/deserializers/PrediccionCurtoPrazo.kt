@@ -1,4 +1,4 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -8,7 +8,11 @@ import java.lang.reflect.Type
 import java.time.LocalDateTime
 
 class PrediccionCurtoPrazo : JsonDeserializer<PredConcelloCurtoPrazo> {
-    override fun deserialize(jsonElement: JsonElement, p1: Type?, p2: JsonDeserializationContext?): PredConcelloCurtoPrazo {
+    override fun deserialize(
+        jsonElement: JsonElement,
+        p1: Type?,
+        p2: JsonDeserializationContext?
+    ): PredConcelloCurtoPrazo {
         val jsonObject = jsonElement.asJsonObject
         val predConcello = jsonObject.get("predConcello").asJsonObject
 
@@ -20,7 +24,7 @@ class PrediccionCurtoPrazo : JsonDeserializer<PredConcelloCurtoPrazo> {
         listaPred.forEach { pred ->
             val predDia = pred.asJsonObject
 
-            val nivelAviso:Int = if (predDia.get("nivelAviso") == JsonNull.INSTANCE) 0
+            val nivelAviso: Int = if (predDia.get("nivelAviso") == JsonNull.INSTANCE) 0
             else predDia.get("nivelAviso").asInt
 
 

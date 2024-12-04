@@ -1,11 +1,11 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
 import com.google.gson.JsonElement
 import java.lang.reflect.Type
 
-class SunDeserializer : JsonDeserializer<Horas>{
+class SunDeserializer : JsonDeserializer<Horas> {
     override fun deserialize(
         json: JsonElement,
         typeOfT: Type?,

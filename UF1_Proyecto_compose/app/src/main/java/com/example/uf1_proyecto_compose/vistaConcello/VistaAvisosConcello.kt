@@ -24,12 +24,12 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.stringResource
+import androidx.compose.ui.text.intl.Locale
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.uf1_proyecto_compose.R
 import com.example.uf1_proyecto_compose.ViewModelTiempo
-import com.example.uf1_proyecto_compose.funciones.backgroundBrush
 import com.example.uf1_proyecto_compose.funciones.colorAviso
 import com.example.uf1_proyecto_compose.funciones.descripcionAlerta
 import com.example.uf1_proyecto_compose.funciones.monthName
@@ -72,8 +72,9 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(backgroundBrush(viewModel.hSunriseSunset.value))
+                                        .background(Gray)
                                         .padding(16.dp),
+                                    color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
                                         .plus(stringResource(id = R.string.deSpace))
@@ -86,7 +87,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 ) {
                                     Text(
                                         modifier = Modifier.fillMaxWidth(),
-                                        text = "Non hai ningun aviso",
+                                        text = stringResource(R.string.noAdvice),
                                         textAlign = TextAlign.Center
                                     )
                                 }
@@ -96,8 +97,9 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(backgroundBrush(viewModel.hSunriseSunset.value))
+                                        .background(Gray)
                                         .padding(16.dp),
+                                    color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
                                         .plus(stringResource(id = R.string.deSpace))
@@ -112,7 +114,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                             .background(colorAviso(maxLevel ?: 0))
                                             .padding(4.dp)
                                             .border(6.dp, colorAviso(dia.idNivel))
-                                            .background(color = Gray)
+                                            .background(color = Color.White)
                                             .padding(22.dp)
 
 
@@ -122,13 +124,24 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                         val fechaFin = LocalDateTime.parse(dia.dataFin)
 
                                         Text(
-                                            text = "Dende o ".plus(weekDay(fechaIni.dayOfWeek.value).lowercase())
-                                                .plus(" ").plus(fechaIni.dayOfMonth)
-                                                .plus(" as ").plus(fechaIni.hour).plus(":00")
-                                                .plus(" ata o ")
+                                            color = Color.Black,
+                                            text = stringResource(R.string.since).plus(
+                                                weekDay(
+                                                    fechaIni.dayOfWeek.value
+                                                ).lowercase()
+                                            )
+                                                .plus(stringResource(R.string.whiteSpace))
+                                                .plus(fechaIni.dayOfMonth)
+                                                .plus(stringResource(R.string.from))
+                                                .plus(fechaIni.hour)
+                                                .plus(stringResource(R.string.dDot00))
+                                                .plus(stringResource(R.string.until))
                                                 .plus(weekDay(fechaFin.dayOfWeek.value).lowercase())
-                                                .plus(" ").plus(fechaFin.dayOfMonth)
-                                                .plus(" as ").plus(fechaFin.hour).plus(":00"),
+                                                .plus(stringResource(R.string.whiteSpace))
+                                                .plus(fechaFin.dayOfMonth)
+                                                .plus(stringResource(R.string.from))
+                                                .plus(fechaFin.hour)
+                                                .plus(stringResource(R.string.dDot00)),
                                             fontSize = 15.sp
                                         )
                                         HorizontalDivider(
@@ -141,14 +154,23 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
 
                                             ) {
                                             Text(
+                                                color = Color.Black,
                                                 text = descripcionAlerta(dia.idTipoAlerta),
                                                 fontSize = 19.sp
                                             )
                                         }
 
-                                        Text(
-                                            text = dia.tipoalerta_gl
-                                        )
+                                        if (Locale.current.language == "gl") {
+                                            Text(
+                                                color = Color.Black,
+                                                text = dia.tipoalertaGl
+                                            )
+                                        } else {
+                                            Text(
+                                                color = Color.Black,
+                                                text = dia.tipoalertaEs
+                                            )
+                                        }
                                     }
 
                                 }

@@ -17,7 +17,6 @@ import androidx.compose.material3.Card
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
 import androidx.compose.material3.IconButton
-import androidx.compose.material3.MaterialTheme
 import androidx.compose.material3.Surface
 import androidx.compose.material3.Text
 import androidx.compose.material3.TextField
@@ -28,6 +27,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
+import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -37,9 +37,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.example.uf1_proyecto_compose.vistaConcello.listaConcello
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.listaConcello
 import com.example.uf1_proyecto_compose.ui.theme.UF1_Proyecto_composeTheme
-import com.example.uf1_proyecto_compose.vistaConcello.Concello
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.Concello
 import kotlinx.coroutines.delay
 import java.nio.charset.Charset
 
@@ -65,23 +65,21 @@ fun Greeting(
     name: String,
     modifier: Modifier = Modifier
 ) {
-        val navController = rememberNavController()
+    val navController = rememberNavController()
 
-        NavHost(navController = navController, startDestination = "pantalla_principal") {
-            composable("pantalla_principal") {
-                BusquedaConcello(navController)
-            }
-            composable(
-                "vista_concello/{idConcello}",
-                arguments = listOf(navArgument("idConcello"){type = NavType.IntType})
-                ) { backStackEntry ->
-                val idConcello = backStackEntry.arguments?.getInt("idConcello") ?: 0
-                VistaConcello(ViewModelTiempo(LocalContext.current, idConcello))
-            }
+    NavHost(navController = navController, startDestination = "pantalla_principal") {
+        composable("pantalla_principal") {
+            BusquedaConcello(navController)
         }
-
+        composable(
+            "vista_concello/{idConcello}",
+            arguments = listOf(navArgument("idConcello") { type = NavType.IntType })
+        ) { backStackEntry ->
+            val idConcello = backStackEntry.arguments?.getInt("idConcello") ?: 0
+            VistaConcello(ViewModelTiempo(LocalContext.current, idConcello))
+        }
+    }
 }
-
 
 
 @Composable
@@ -124,8 +122,8 @@ fun BusquedaConcello(navController: NavHostController) {
         TextField(
             value = searchQuery.value,
             onValueChange = { searchQuery.value = it },
-            label = { Text("Busca un concello") },
-            placeholder = { Text("Escribe un concello") },
+            label = { Text(stringResource(R.string.findConcello)) },
+            placeholder = { Text(stringResource(R.string.writeConcello)) },
             modifier = Modifier
                 .padding(bottom = 16.dp)
                 .fillMaxWidth(),
@@ -144,7 +142,6 @@ fun BusquedaConcello(navController: NavHostController) {
                     .fillMaxSize()
                     .wrapContentSize(Alignment.Center)
             )
-
 
 
         } else {
@@ -177,7 +174,6 @@ fun BusquedaConcello(navController: NavHostController) {
         }
     }
 }
-
 
 
 @Preview(showBackground = true)

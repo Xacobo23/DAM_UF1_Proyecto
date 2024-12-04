@@ -1,4 +1,4 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonDeserializationContext
@@ -7,7 +7,7 @@ import com.google.gson.JsonElement
 import com.google.gson.reflect.TypeToken
 import java.lang.reflect.Type
 
-fun listaConcello(json : String): List<Concello>{
+fun listaConcello(json: String): List<Concello> {
     val gson = GsonBuilder()
         .registerTypeAdapter(Concello::class.java, ConcelloDeserializer())
         .create()
@@ -16,7 +16,8 @@ fun listaConcello(json : String): List<Concello>{
 
 
     val listaConcellos: List<Concello> = gson.fromJson(
-                json, type)
+        json, type
+    )
 
     return listaConcellos
 }

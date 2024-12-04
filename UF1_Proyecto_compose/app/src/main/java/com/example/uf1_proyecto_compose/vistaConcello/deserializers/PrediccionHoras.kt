@@ -1,4 +1,4 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -15,10 +15,10 @@ class PrediccionHoras : JsonDeserializer<PredHoraria> {
         val jsonPredHoraria = jsonObject.get("predHoraria").asJsonObject
         val arrayListaPredDiaHora = jsonPredHoraria.get("listaPredDiaHoraria").asJsonArray
 
-        val listaDias : MutableList<Dia> = mutableListOf()
-        arrayListaPredDiaHora.forEach{ dia ->
-            val listaPredHora : MutableList<PredHora> = mutableListOf()
-            dia.asJsonObject.get("listaPredHora").asJsonArray.forEach{
+        val listaDias: MutableList<Dia> = mutableListOf()
+        arrayListaPredDiaHora.forEach { dia ->
+            val listaPredHora: MutableList<PredHora> = mutableListOf()
+            dia.asJsonObject.get("listaPredHora").asJsonArray.forEach {
                 listaPredHora.add(
                     PredHora(
                         it.asJsonObject.get("dataPredicion").asString,
@@ -42,17 +42,17 @@ class PrediccionHoras : JsonDeserializer<PredHoraria> {
 }
 
 data class PredHoraria(
-    val listaPredHoraria : List<Dia>
+    val listaPredHoraria: List<Dia>
 )
 
 data class Dia(
-    val dia : Int,
-    val predHoras : List<PredHora>
+    val dia: Int,
+    val predHoras: List<PredHora>
 )
 
 data class PredHora(
-    val dataPredicion:String,
-    val icoCeo:Int,
-    val icoVento:Int,
-    val tMedia:Int
+    val dataPredicion: String,
+    val icoCeo: Int,
+    val icoVento: Int,
+    val tMedia: Int
 )

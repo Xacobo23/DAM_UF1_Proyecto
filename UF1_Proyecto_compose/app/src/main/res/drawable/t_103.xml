@@ -4,6 +4,9 @@
     android:height="64dp"
     android:viewportWidth="64"
     android:viewportHeight="64">
+  <group
+      android:scaleX="1.05"
+      android:scaleY="1.05">
   <path
       android:pathData="M19,24m-5,0a5,5 0,1 1,10 0a5,5 0,1 1,-10 0"
       android:strokeWidth="0.5"
@@ -44,4 +47,5 @@
       </gradient>
     </aapt:attr>
   </path>
+  </group>
 </vector>

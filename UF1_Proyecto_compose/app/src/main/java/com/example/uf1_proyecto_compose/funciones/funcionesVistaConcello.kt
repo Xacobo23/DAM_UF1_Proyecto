@@ -9,7 +9,7 @@ import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.stringResource
 import coil.compose.rememberAsyncImagePainter
 import com.example.uf1_proyecto_compose.R
-import com.example.uf1_proyecto_compose.vistaConcello.Horas
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.Horas
 import java.time.LocalDate
 import java.time.LocalTime
 import java.time.format.DateTimeFormatter
@@ -163,10 +163,11 @@ import java.time.format.DateTimeFormatter
         ) {
             return Brush.linearGradient(
                 listOf(
-                    Color(0xFFFF7F50),  // Coral
-                    Color(0xFFFF4500),  // Naranja brillante
-                    Color(0xFF8B0000)   // Rojo oscuro
+                    Color(0xFF4682B4),  // Steel Blue (azul acero)
+                    Color(0xFFFFA500),  // Orange (naranja)
+                    Color(0xFFFF8C00),  // Dark Orange (naranja oscuro)
                 )
+
             )
         }
 

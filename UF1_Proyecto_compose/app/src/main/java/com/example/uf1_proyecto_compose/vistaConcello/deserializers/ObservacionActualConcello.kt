@@ -1,4 +1,4 @@
-package com.example.uf1_proyecto_compose.vistaConcello
+package com.example.uf1_proyecto_compose.vistaConcello.deserializers
 
 import com.google.gson.JsonDeserializationContext
 import com.google.gson.JsonDeserializer
@@ -15,17 +15,17 @@ class ObservacionActualConcello : JsonDeserializer<ObservacionConcello> {
         val jsonObject = json.asJsonObject
         val listaJsonArray = jsonObject.getAsJsonArray("listaObservacionConcellos")
 
-            val observacionObject = listaJsonArray[0].asJsonObject
+        val observacionObject = listaJsonArray[0].asJsonObject
 
-            // Parse individual fields
-             return ObservacionConcello(
-                icoEstadoCeo = observacionObject.get("icoEstadoCeo").asInt,
-                icoVento = observacionObject.get("icoVento").asInt,
-                idConcello = observacionObject.get("idConcello").asInt,
-                nomeConcello = observacionObject.get("nomeConcello").asString,
-                sensacionTermica = observacionObject.get("sensacionTermica").asDouble,
-                temperatura = observacionObject.get("temperatura").asDouble
-            )
+        // Parse individual fields
+        return ObservacionConcello(
+            icoEstadoCeo = observacionObject.get("icoEstadoCeo").asInt,
+            icoVento = observacionObject.get("icoVento").asInt,
+            idConcello = observacionObject.get("idConcello").asInt,
+            nomeConcello = observacionObject.get("nomeConcello").asString,
+            sensacionTermica = observacionObject.get("sensacionTermica").asDouble,
+            temperatura = observacionObject.get("temperatura").asDouble
+        )
     }
 }
 

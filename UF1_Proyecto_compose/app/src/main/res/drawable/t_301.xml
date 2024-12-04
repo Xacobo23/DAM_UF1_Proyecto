@@ -5,7 +5,7 @@
     android:viewportHeight="100">
   <group
       android:translateX="150"
-      android:translateY="130"
+      android:translateY="131"
       android:rotation="180"
       android:scaleX="2"
       android:scaleY="2">
@@ -13,14 +13,14 @@
       android:fillColor="#FF000000"
       android:pathData="M50,30L50,60"
       android:strokeWidth="2"
-      android:strokeColor="#505050"/>
+      android:strokeColor="#ffff"/>
   <path
       android:fillColor="#FF000000"
       android:pathData="M51,60L42,60"
       android:strokeWidth="2"
-      android:strokeColor="#505050"/>
+      android:strokeColor="#ffff"/>
   <path
       android:pathData="M45,30l5,-10l5,10z"
-      android:fillColor="#505050"/>
+      android:fillColor="#ffff"/>
   </group>
 </vector>
