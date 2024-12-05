@@ -2,13 +2,20 @@ package com.example.uf1_proyecto_compose.vistaConcello
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
+import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.WindowInsets
+import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -60,20 +67,25 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
         if (prediccionAvisos.isNotEmpty()) {
             Column {
 
-
+//                Row(modifier = Modifier.fillMaxWidth().height(16.dp).background(Color(0xFF8891BD))){}
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .background(Color(0xFF8891BD))
+                        .padding(top = 30.dp, bottom = 48.dp)
+                        .fillMaxSize(),
+
                     verticalArrangement = Arrangement.Top,
 
                     ) {
                     prediccionAvisos.forEach {
                         item {
+
                             if (it.listaAvisosConcellos.isEmpty()) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Gray)
-                                        .padding(16.dp),
+                                        .background(Color(0xFF8891BD))
+                                        .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
@@ -82,13 +94,15 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                     textAlign = TextAlign.Center
                                 )
                                 Row(
-                                    modifier = Modifier.padding(60.dp),
+                                    modifier = Modifier.background(Color.White).padding(60.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
                                         text = stringResource(R.string.noAdvice),
-                                        textAlign = TextAlign.Center
+                                        textAlign = TextAlign.Center,
+                                        color = Color.Black
                                     )
                                 }
                             } else {
@@ -97,8 +111,8 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Gray)
-                                        .padding(16.dp),
+                                        .background(Color(0xFF8891BD))
+                                        .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
@@ -177,6 +191,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                         }
                     }
                 }
+                Row(modifier = Modifier.fillMaxWidth().height(48.dp).background(Color(0xFF8891BD))){}
             }
         }
     }

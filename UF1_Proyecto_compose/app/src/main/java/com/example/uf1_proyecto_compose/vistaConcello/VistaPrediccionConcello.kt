@@ -2,19 +2,15 @@ package com.example.uf1_proyecto_compose.vistaConcello
 
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.safeContentPadding
 import androidx.compose.foundation.layout.size
-import androidx.compose.foundation.layout.systemBars
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.rememberScrollState
@@ -44,7 +40,6 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.platform.LocalDensity
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.unit.dp
@@ -93,26 +88,17 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
 
 
         Box {
-            val insets = WindowInsets.systemBars
-            val density = LocalDensity.current
             Column(
                 modifier = Modifier.fillMaxSize()
                     .verticalScroll(state = rememberScrollState())
                     .background(backgroundBrush(viewModel.hSunriseSunset.value))
-                    .padding(
-                        top = with(density) { insets.getTop(density).toDp() },
-                        bottom = with(density) { insets.getBottom(density).toDp() }
-                    )
-//                    .background(Color.Cyan).fillMaxSize()
-
-
             ) {
 
                 Text(
                     text = concelloObservacion.nomeConcello,
                     modifier = Modifier
                         .fillMaxWidth()
-                        .padding(bottom = 20.dp),
+                        .padding(top = 40.dp, bottom = 20.dp),
                     fontSize = 30.sp,
                     color = Color.White,
                     textAlign = TextAlign.Center
@@ -487,6 +473,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                 Column(
                     modifier = Modifier
                         .background(Color.LightGray.copy(alpha = 0.3f))
+                        .padding(bottom = 48.dp)
                 ) {
                     val listaPredLargoPrazo = viewModel.concelloLargoPrazo.value.listaPredLargoPrazo
                     if (listaPredLargoPrazo.isNotEmpty()) {
@@ -612,7 +599,8 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
                         Icon(
                             Icons.Sharp.Warning,
                             contentDescription = "Pantalla 1",
-                            modifier = Modifier.size(20.dp)
+                            modifier = Modifier.size(20.dp),
+                            tint = Color.Black
                         )
                     }
 
@@ -636,7 +624,13 @@ fun BottomNavigationBar(
     ) {
         // Primer item de navegación (Pantalla 1)
         BottomNavigationItem(
-            icon = { Icon(Icons.Filled.Home, contentDescription = "Pantalla 1") },
+            icon = {
+                Icon(
+                    Icons.Filled.Home,
+                    contentDescription = "Pantalla 1",
+                    tint = Color.Black
+                )
+                   },
             selected = pagerState.currentPage == 0,
             onClick = {
                 coroutineScope.launch {
@@ -647,7 +641,13 @@ fun BottomNavigationBar(
 
         // Segundo item de navegación (Pantalla 2)
         BottomNavigationItem(
-            icon = { Icon(Icons.Sharp.Warning, contentDescription = "Pantalla 2") },
+            icon = {
+                Icon(
+                    Icons.Sharp.Warning,
+                    contentDescription = "Pantalla 2",
+                    tint = Color.Black
+                )
+            },
             selected = pagerState.currentPage == 1,
             onClick = {
                 coroutineScope.launch {
