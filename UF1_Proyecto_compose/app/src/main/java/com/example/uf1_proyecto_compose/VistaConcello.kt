@@ -54,8 +54,8 @@ fun VistaConcello(
                     modifier = Modifier.fillMaxSize()
                 ) { page ->
                     when (page) {
-                        0 -> VistaPrediccionConcello(viewModelTiempo) // Primera pantalla
-                        1 -> VistaAvisosConcello(viewModelTiempo) // Segunda pantalla
+                        0 -> VistaPrediccionConcello(viewModelTiempo)
+                        1 -> VistaAvisosConcello(viewModelTiempo)
                     }
                 }
             }
@@ -74,5 +74,6 @@ fun VistaConcello(
                 CircularProgressIndicator()
             }
         }
+
     }
 }

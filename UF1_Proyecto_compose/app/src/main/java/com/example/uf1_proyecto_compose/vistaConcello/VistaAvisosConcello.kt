@@ -2,20 +2,14 @@ package com.example.uf1_proyecto_compose.vistaConcello
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.gestures.scrollable
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
-import androidx.compose.foundation.layout.WindowInsets
-import androidx.compose.foundation.layout.asPaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.statusBars
 import androidx.compose.foundation.lazy.LazyColumn
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material3.ExperimentalMaterial3Api
 import androidx.compose.material3.HorizontalDivider
 import androidx.compose.material3.Text
@@ -41,7 +35,7 @@ import com.example.uf1_proyecto_compose.funciones.colorAviso
 import com.example.uf1_proyecto_compose.funciones.descripcionAlerta
 import com.example.uf1_proyecto_compose.funciones.monthName
 import com.example.uf1_proyecto_compose.funciones.weekDay
-import com.example.uf1_proyecto_compose.ui.theme.Gray
+import com.example.uf1_proyecto_compose.ui.theme.FondoGray
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -67,10 +61,9 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
         if (prediccionAvisos.isNotEmpty()) {
             Column {
 
-//                Row(modifier = Modifier.fillMaxWidth().height(16.dp).background(Color(0xFF8891BD))){}
                 LazyColumn(
                     modifier = Modifier
-                        .background(Color(0xFF8891BD))
+                        .background(FondoGray)
                         .padding(top = 30.dp, bottom = 48.dp)
                         .fillMaxSize(),
 
@@ -84,7 +77,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Color(0xFF8891BD))
+                                        .background(FondoGray)
                                         .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
@@ -111,7 +104,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Color(0xFF8891BD))
+                                        .background(FondoGray)
                                         .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
@@ -191,7 +184,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                         }
                     }
                 }
-                Row(modifier = Modifier.fillMaxWidth().height(48.dp).background(Color(0xFF8891BD))){}
+                Row(modifier = Modifier.fillMaxWidth().height(48.dp).background(FondoGray)){}
             }
         }
     }
