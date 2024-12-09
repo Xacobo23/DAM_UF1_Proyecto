@@ -9,7 +9,6 @@ import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.graphics.Color
-import androidx.compose.ui.unit.dp
 import com.example.uf1_proyecto_compose.vistaConcello.BottomNavigationBar
 import com.example.uf1_proyecto_compose.vistaConcello.VistaAvisosConcello
 import com.example.uf1_proyecto_compose.vistaConcello.VistaPrediccionConcello
@@ -45,7 +44,7 @@ fun VistaConcello(
                     coroutineScope = coroutineScope
                 )
             },
-            modifier = Modifier.padding(bottom = 32.dp)
+            modifier = Modifier.navigationBarsPadding()
         ) {
             Box(modifier = Modifier) {
                 HorizontalPager(
@@ -54,8 +53,8 @@ fun VistaConcello(
                     modifier = Modifier.fillMaxSize()
                 ) { page ->
                     when (page) {
-                        0 -> VistaPrediccionConcello(viewModelTiempo) // Primera pantalla
-                        1 -> VistaAvisosConcello(viewModelTiempo) // Segunda pantalla
+                        0 -> VistaPrediccionConcello(viewModelTiempo)
+                        1 -> VistaAvisosConcello(viewModelTiempo)
                     }
                 }
             }
@@ -74,5 +73,6 @@ fun VistaConcello(
                 CircularProgressIndicator()
             }
         }
+
     }
 }

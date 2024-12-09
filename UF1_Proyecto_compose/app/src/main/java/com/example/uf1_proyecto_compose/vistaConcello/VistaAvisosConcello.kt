@@ -7,6 +7,7 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -34,7 +35,7 @@ import com.example.uf1_proyecto_compose.funciones.colorAviso
 import com.example.uf1_proyecto_compose.funciones.descripcionAlerta
 import com.example.uf1_proyecto_compose.funciones.monthName
 import com.example.uf1_proyecto_compose.funciones.weekDay
-import com.example.uf1_proyecto_compose.ui.theme.Gray
+import com.example.uf1_proyecto_compose.ui.theme.FondoGray
 import kotlinx.coroutines.launch
 import java.time.LocalDate
 import java.time.LocalDateTime
@@ -60,20 +61,24 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
         if (prediccionAvisos.isNotEmpty()) {
             Column {
 
-
                 LazyColumn(
-                    modifier = Modifier.fillMaxSize(),
+                    modifier = Modifier
+                        .background(FondoGray)
+                        .padding(top = 30.dp, bottom = 48.dp)
+                        .fillMaxSize(),
+
                     verticalArrangement = Arrangement.Top,
 
                     ) {
                     prediccionAvisos.forEach {
                         item {
+
                             if (it.listaAvisosConcellos.isEmpty()) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Gray)
-                                        .padding(16.dp),
+                                        .background(FondoGray)
+                                        .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
@@ -82,13 +87,15 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                     textAlign = TextAlign.Center
                                 )
                                 Row(
-                                    modifier = Modifier.padding(60.dp),
+                                    modifier = Modifier.background(Color.White).padding(60.dp),
                                     verticalAlignment = Alignment.CenterVertically
                                 ) {
                                     Text(
-                                        modifier = Modifier.fillMaxWidth(),
+                                        modifier = Modifier
+                                            .fillMaxWidth(),
                                         text = stringResource(R.string.noAdvice),
-                                        textAlign = TextAlign.Center
+                                        textAlign = TextAlign.Center,
+                                        color = Color.Black
                                     )
                                 }
                             } else {
@@ -97,8 +104,8 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                                 Text(
                                     modifier = Modifier
                                         .fillMaxWidth()
-                                        .background(Gray)
-                                        .padding(16.dp),
+                                        .background(FondoGray)
+                                        .padding(vertical = 16.dp),
                                     color = Color.White,
                                     text = LocalDate.now()
                                         .plusDays(it.dia.toLong()).dayOfMonth.toString()
@@ -177,6 +184,7 @@ fun VistaAvisosConcello(viewModel: ViewModelTiempo) {
                         }
                     }
                 }
+                Row(modifier = Modifier.fillMaxWidth().height(48.dp).background(FondoGray)){}
             }
         }
     }
