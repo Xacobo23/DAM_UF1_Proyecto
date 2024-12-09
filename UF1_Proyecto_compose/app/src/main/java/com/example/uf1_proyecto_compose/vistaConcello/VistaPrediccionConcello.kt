@@ -591,7 +591,7 @@ fun VistaPrediccionConcello(viewModel: ViewModelTiempo) {
 
                     modifier = Modifier
                         .align(Alignment.TopEnd)
-                        .padding(top = 84.dp)
+                        .padding(top = 92.dp)
                         .size(48.dp),
                     shape = RoundedCornerShape(
                         topStart = 8.dp,
