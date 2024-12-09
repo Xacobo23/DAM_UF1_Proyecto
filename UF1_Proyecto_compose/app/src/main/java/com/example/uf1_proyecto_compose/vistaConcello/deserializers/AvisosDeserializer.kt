@@ -23,7 +23,7 @@ class AvisosDeserializer : JsonDeserializer<ListaPrediccionAvisos> {
             arrayAvisosConcello.forEach {
                 listaAvisosConcello.add(
                     AvisoConcellos(
-                        it.asJsonObject.get("idconcello").asInt,
+                        it.asJsonObject.get("idConcello").asInt,
                         it.asJsonObject.get("idNivel").asInt,
                         it.asJsonObject.get("nomeConcello").asString,
                         it.asJsonObject.get("dataAviso").asString,

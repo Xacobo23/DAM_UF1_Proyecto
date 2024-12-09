@@ -6,8 +6,12 @@
     <string name="predCortoConcello">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=</string>
     <string name="predHorariaConcello">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredHorariaConcellos.action?idConc=</string>
 
+    <string name="predAvisos">https://servizos.meteogalicia.gal/mgrss/predicion/adversos/jsonAvisosConcellos.action?idConcello=</string>
+
     <string name="predLargoConcello">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredMedioPrazo.action?idConc=</string>
-    <string name="predLargoConcelloDia">&amp;dia=-1</string>
+    <string name="dayMinus1">&amp;dia=-1</string>
+
+
 
     <string name="request_locale">&amp;request_locale=gl</string>
 

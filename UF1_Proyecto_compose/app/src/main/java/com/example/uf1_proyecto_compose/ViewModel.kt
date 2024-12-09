@@ -2,6 +2,7 @@ package com.example.uf1_proyecto_compose
 
 import android.content.Context
 import androidx.compose.runtime.mutableStateOf
+import androidx.compose.ui.res.stringResource
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.uf1_proyecto_compose.vistaConcello.deserializers.AvisosDeserializer
@@ -30,32 +31,45 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
 
 
     private val _concelloObservacion =
-        mutableStateOf<ObservacionConcello>(ObservacionConcello(-9999, -9999, 0, "", 0.0, 0.0))
+        mutableStateOf<ObservacionConcello>(
+            ObservacionConcello(-9999, -9999, 0, "", 0.0, 0.0)
+        )
     val concelloObservacion = _concelloObservacion
 
-    private val _concelloCurtoPrazo = mutableStateOf<PredConcelloCurtoPrazo>(
-        PredConcelloCurtoPrazo(
-            listaPredDiaConcello = listOf()
+
+    private val _concelloCurtoPrazo =
+        mutableStateOf<PredConcelloCurtoPrazo>(
+            PredConcelloCurtoPrazo(
+                listaPredDiaConcello = listOf()
+            )
         )
-    )
     val concelloCurtoPrazo = _concelloCurtoPrazo
 
-    private val _concelloPredHoras = mutableStateOf<PredHoraria>(
-        PredHoraria(
-            listaPredHoraria = listOf()
+
+    private val _concelloPredHoras =
+        mutableStateOf<PredHoraria>(
+            PredHoraria(
+                listaPredHoraria = listOf()
+            )
         )
-    )
     val concelloPredHoras = _concelloPredHoras
 
-    private val _concelloLargoPrazo = mutableStateOf<PredConcelloLargoPrazo>(
-        PredConcelloLargoPrazo(
-            listaPredLargoPrazo = listOf()
+
+    private val _concelloLargoPrazo =
+        mutableStateOf<PredConcelloLargoPrazo>(
+            PredConcelloLargoPrazo(
+                listaPredLargoPrazo = listOf()
+            )
         )
-    )
     val concelloLargoPrazo = _concelloLargoPrazo
 
-    private val _hSunriseSunset = mutableStateOf(Horas("1:00:01 AM", "1:00:01 PM"))
+
+    private val _hSunriseSunset =
+        mutableStateOf(
+            Horas("1:00:01 AM", "1:00:01 PM")
+        )
     val hSunriseSunset = _hSunriseSunset
+
 
     private val _concelloAvisos = mutableStateOf<ListaPrediccionAvisos>(
         ListaPrediccionAvisos(listOf())
@@ -126,7 +140,7 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
                 try {
                     val jsonStringPredLargoPrazo = fetchUrlContent(
                         context.resources.getString(R.string.predLargoConcello).plus(idConcello)
-                            .plus(context.resources.getString(R.string.predLargoConcelloDia))
+                            .plus(context.resources.getString(R.string.dayMinus1))
                             .plus(context.resources.getString(R.string.request_locale))
                     )
                     val gsonConcelloPredLargoPrazo = GsonBuilder()
@@ -157,59 +171,62 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
             val deferredConcelloAvisos = async(Dispatchers.IO) {
                 try {
                     val avisosConcello =
-                        //fetchUrlContent("https://servizos.meteogalicia.gal/mgrss/predicion/adversos/jsonAvisosConcellos.action?idConcello=36013&dia=-1")
-                        """
-{
-  "listaDiaConcellos": [
-    {
-      "dia": 0,
-      "listaAvisosConcellos": [
-        {
-          "idconcello": 15010,
-          "idNivel": 1,
-          "nomeConcello": "A Coruña",
-          "dataAviso": "2024-12-02T08:00:00",
-          "dataIni": "2024-12-02T10:00:00",
-          "dataFin": "2024-12-02T20:00:00",
-          "idTipoAlerta": 3,
-          "tipoalerta_gl": "Alerta laranxa por chuvias intensas",
-          "tipoalerta_es": "Alerta naranja por lluvias intensas"
-        },
-        {
-          "idconcello": 15030,
-          "idNivel": 2,
-          "nomeConcello": "Lugo",
-          "dataAviso": "2024-12-02T08:00:00",
-          "dataIni": "2024-12-02T12:00:00",
-          "dataFin": "2024-12-02T18:00:00",
-          "idTipoAlerta": 2,
-          "tipoalerta_gl": "Alerta amarela por ventos fortes",
-          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
-        },
-        {
-          "idconcello": 15030,
-          "idNivel": 3,
-          "nomeConcello": "Lugo",
-          "dataAviso": "2024-12-02T08:00:00",
-          "dataIni": "2024-12-02T12:00:00",
-          "dataFin": "2024-12-02T18:00:00",
-          "idTipoAlerta": 2,
-          "tipoalerta_gl": "Alerta roxa por ventos fortes",
-          "tipoalerta_es": "Alerta roja por vientos fuertes"
-        }
-      ]
-    },
-    {
-      "dia": 1,
-      "listaAvisosConcellos": []
-    },
-    {
-      "dia": 2,
-      "listaAvisosConcellos": []
-    }
-  ]
-}
-                """
+                        fetchUrlContent(
+                            context.resources.getString(R.string.predAvisos).plus(idConcello).plus(
+                            context.resources.getString(R.string.dayMinus1)))
+//                        """
+//{
+//  "listaDiaConcellos": [
+//    {
+//      "dia": 0,
+//      "listaAvisosConcellos": [
+//        {
+//          "dataAviso": "2024-12-09T00:00:00",
+//          "dataFin": "2024-12-10T00:00:00",
+//          "dataIni": "2024-12-09T00:00:00",
+//          "id": 57080322,
+//          "idConcello": 27018,
+//          "idNivel": 1,
+//          "idTipoAlerta": 6,
+//          "nomeConcello": "Fonsagrada (A)",
+//          "tipoalerta_es": "Nieve",
+//          "tipoalerta_gl": "Neve"
+//        },
+//        {
+//          "idConcello": 15030,
+//          "idNivel": 2,
+//          "nomeConcello": "Lugo",
+//          "dataAviso": "2024-12-02T08:00:00",
+//          "dataIni": "2024-12-02T12:00:00",
+//          "dataFin": "2024-12-02T18:00:00",
+//          "idTipoAlerta": 2,
+//          "tipoalerta_gl": "Alerta amarela por ventos fortes",
+//          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
+//        },
+//        {
+//          "idConcello": 15030,
+//          "idNivel": 3,
+//          "nomeConcello": "Lugo",
+//          "dataAviso": "2024-12-02T08:00:00",
+//          "dataIni": "2024-12-02T12:00:00",
+//          "dataFin": "2024-12-02T18:00:00",
+//          "idTipoAlerta": 2,
+//          "tipoalerta_gl": "Alerta roxa por ventos fortes",
+//          "tipoalerta_es": "Alerta roja por vientos fuertes"
+//        }
+//      ]
+//    },
+//    {
+//      "dia": 1,
+//      "listaAvisosConcellos": []
+//    },
+//    {
+//      "dia": 2,
+//      "listaAvisosConcellos": []
+//    }
+//  ]
+//}
+//                """
 
                     val gsonAvisosConcello = GsonBuilder()
                         .registerTypeAdapter(

@@ -30,7 +30,6 @@ fun VistaConcello(
     var visible by remember { mutableStateOf(true) }
 
 
-    // Simulando un delay para ocultar el contenido
     LaunchedEffect(visible) {
         delay(2000)
         visible = false
