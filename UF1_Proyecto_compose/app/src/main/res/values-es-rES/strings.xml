@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="app_name">UF1_Proyecto_compose</string>
+    <string name="app_name">Cousa</string>
 
     <string name="observacionConcello">https://servizos.meteogalicia.gal/rss/observacion/observacionConcellos.action?idConcello=</string>
     <string name="predCortoConcello">https://servizos.meteogalicia.gal/mgrss/predicion/jsonPredConcellos.action?idConc=</string>

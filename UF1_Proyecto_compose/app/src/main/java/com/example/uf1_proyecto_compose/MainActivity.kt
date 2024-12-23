@@ -7,6 +7,7 @@ import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
@@ -43,6 +44,10 @@ fun Greeting(
 ) {
     val navController = rememberNavController()
 
+    LaunchedEffect(Unit) {
+        println("App inicializada.")
+    }
+
     NavHost(navController = navController, startDestination = "pantalla_principal") {
         composable("pantalla_principal") {
             BusquedaConcello(navController)
@@ -52,19 +57,8 @@ fun Greeting(
             arguments = listOf(navArgument("idConcello") { type = NavType.IntType })
         ) { backStackEntry ->
             val idConcello = backStackEntry.arguments?.getInt("idConcello") ?: 0
+
             VistaConcello(ViewModelTiempo(LocalContext.current, idConcello))
         }
-    }
-}
-
-
-
-
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    UF1_Proyecto_composeTheme {
-        Greeting("Android")
     }
 }

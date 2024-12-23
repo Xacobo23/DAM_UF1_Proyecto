@@ -2,6 +2,7 @@ package com.example.uf1_proyecto_compose
 
 
 import android.annotation.SuppressLint
+import android.util.Log
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.*
 import androidx.compose.material3.*
@@ -12,6 +13,7 @@ import androidx.compose.ui.graphics.Color
 import com.example.uf1_proyecto_compose.vistaConcello.BottomNavigationBar
 import com.example.uf1_proyecto_compose.vistaConcello.VistaAvisosConcello
 import com.example.uf1_proyecto_compose.vistaConcello.VistaPrediccionConcello
+import com.example.uf1_proyecto_compose.vistaConcello.deserializers.ObservacionConcello
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.PagerState
@@ -26,53 +28,34 @@ fun VistaConcello(
 
     val pagerState = remember { PagerState() }
     val coroutineScope = rememberCoroutineScope()
-    var visible by remember { mutableStateOf(true) }
 
-
-    LaunchedEffect(visible) {
-        delay(2000)
-        visible = false
+    val concelloNull = remember {
+        ObservacionConcello(-9999, -9999, 0, "", 0.0, 0.0)
     }
+
+    val viewValue = viewModelTiempo.concelloObservacion.value
+
+
+
+
 
 
 
     Box (modifier = Modifier) {
-        Scaffold(
-            bottomBar = {
-                BottomNavigationBar(
-                    pagerState = pagerState,
-                    coroutineScope = coroutineScope
-                )
-            },
-            modifier = Modifier.navigationBarsPadding()
-        ) {
-            Box(modifier = Modifier) {
-                HorizontalPager(
-                    state = pagerState,
-                    count = 2, // Número de pantallas
-                    modifier = Modifier.fillMaxSize()
-                ) { page ->
-                    when (page) {
-                        0 -> VistaPrediccionConcello(viewModelTiempo)
-                        1 -> VistaAvisosConcello(viewModelTiempo)
-                    }
-                }
-            }
-        }
+            VistaPrediccionConcello(viewModelTiempo)
 
 
 
-        if (visible) {
+//
+
+        if (concelloNull == viewValue || viewValue == null) {
+            Log.d("VistaConcello", "Cargando datos...")
             Column(
-                horizontalAlignment = Alignment.CenterHorizontally,
-                modifier = Modifier
-                    .background(Color(0xFF87CEEB))
-                    .fillMaxSize(),
-                verticalArrangement = Arrangement.Center
+                modifier = Modifier.fillMaxSize().background(Color(0xFF87CEEB))
+
             ) {
                 CircularProgressIndicator()
             }
         }
-
     }
 }

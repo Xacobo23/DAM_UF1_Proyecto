@@ -174,59 +174,6 @@ class ViewModelTiempo(context: Context, idConcello: Int) : ViewModel() {
                         fetchUrlContent(
                             context.resources.getString(R.string.predAvisos).plus(idConcello).plus(
                             context.resources.getString(R.string.dayMinus1)))
-//                        """
-//{
-//  "listaDiaConcellos": [
-//    {
-//      "dia": 0,
-//      "listaAvisosConcellos": [
-//        {
-//          "dataAviso": "2024-12-09T00:00:00",
-//          "dataFin": "2024-12-10T00:00:00",
-//          "dataIni": "2024-12-09T00:00:00",
-//          "id": 57080322,
-//          "idConcello": 27018,
-//          "idNivel": 1,
-//          "idTipoAlerta": 6,
-//          "nomeConcello": "Fonsagrada (A)",
-//          "tipoalerta_es": "Nieve",
-//          "tipoalerta_gl": "Neve"
-//        },
-//        {
-//          "idConcello": 15030,
-//          "idNivel": 2,
-//          "nomeConcello": "Lugo",
-//          "dataAviso": "2024-12-02T08:00:00",
-//          "dataIni": "2024-12-02T12:00:00",
-//          "dataFin": "2024-12-02T18:00:00",
-//          "idTipoAlerta": 2,
-//          "tipoalerta_gl": "Alerta amarela por ventos fortes",
-//          "tipoalerta_es": "Alerta amarilla por vientos fuertes"
-//        },
-//        {
-//          "idConcello": 15030,
-//          "idNivel": 3,
-//          "nomeConcello": "Lugo",
-//          "dataAviso": "2024-12-02T08:00:00",
-//          "dataIni": "2024-12-02T12:00:00",
-//          "dataFin": "2024-12-02T18:00:00",
-//          "idTipoAlerta": 2,
-//          "tipoalerta_gl": "Alerta roxa por ventos fortes",
-//          "tipoalerta_es": "Alerta roja por vientos fuertes"
-//        }
-//      ]
-//    },
-//    {
-//      "dia": 1,
-//      "listaAvisosConcellos": []
-//    },
-//    {
-//      "dia": 2,
-//      "listaAvisosConcellos": []
-//    }
-//  ]
-//}
-//                """
 
                     val gsonAvisosConcello = GsonBuilder()
                         .registerTypeAdapter(
